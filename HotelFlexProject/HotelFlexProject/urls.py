@@ -19,25 +19,14 @@ urlpatterns = [
     url(r'^$', app.views.home, name='home'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
-    url(r'^login/$',
-        django.contrib.auth.views.login,
-        {
-            'template_name': 'app/login.html',
-            'authentication_form': app.forms.BootstrapAuthenticationForm,
-            'extra_context':
-            {
-                'title': 'Log in',
-                'year': datetime.now().year,
-            }
-        },
-        name='login'),
-    url(r'^logout$',
-        django.contrib.auth.views.logout,
-        {
-            'next_page': '/',
-        },
-        name='logout'),
-
+    url(r'^register/$',app.views.register,name='register'),
+    url(r'^login/$',app.views.login,name='login'),
+    url(r'^booking/$',app.views.booking,name='booking'),
+    url(r'^logout$',app.views.logout,name='logout'),
+    url(r'^roombooking/$',app.views.roombooking,name='roombooking'),
+    url(r'^single/$',app.views.single,name='roombooking'),
+    url(r'^double/$',app.views.double,name='roombooking'),
+    url(r'^luxury/$',app.views.luxury,name='roombooking'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

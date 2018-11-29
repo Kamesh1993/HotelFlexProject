@@ -1,0 +1,17 @@
+install_warning_logger
+Python26DeprecationWarning
+Pending
+_showwarning
+__file__
+__package__
+__cached__
+absolute_import
+logging
+RemovedInPip10Warning
+warnings
+__name__
+__builtins__
+_warnings_showwarning
+PipDeprecationWarning
+RemovedInPip11Warning
+__spec__
