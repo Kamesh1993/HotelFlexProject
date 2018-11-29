@@ -158,14 +158,17 @@ def luxury(request):
         return render(request,'app/booking.html')
 
 def reservation(room,details):
-    today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
-    rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
-    rb.save()
-    user = User.objects.get(email=room_details[2])
-    conn = pymysql.connect(host= "localhost",user="root",passwd="superstar007",db="hotelflexproject")
-    cur = conn.cursor()
-    cur.execute("""INSERT INTO reservation VALUES (%s,%s,%s,%s,%s)""",(today_date,room_details[0],room_details[1],details[3],user.id))
-    conn.commit()
+    try:
+        today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
+        rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
+        rb.save()
+        user = User.objects.get(email=room_details[2])
+        conn = pymysql.connect(host= "localhost",user="root",passwd="superstar007",db="hotelflexproject")
+        cur = conn.cursor()
+        cur.execute("""INSERT INTO reservation VALUES (%s,%s,%s,%s,%s)""",(today_date,room_details[0],room_details[1],details[3],user.id))
+        conn.commit()
+    except:
+        conn.rollback()
 
 def changeDateFormat(date):
     d_list = date.split('/')
