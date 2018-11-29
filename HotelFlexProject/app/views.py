@@ -12,6 +12,8 @@ from app.forms import RegisterForm, LoginForm, RoomBooking, Reservation
 from datetime import datetime
 from app.models import UserDetails, RoomBooking
 import mysql.connector
+from mysql.connector import Error
+from mysql.connector import errorcode
 from passlib.hash import sha256_crypt
 import pymysql
 
@@ -158,19 +160,38 @@ def luxury(request):
         return render(request,'app/booking.html')
 
 def reservation(room,details):
-    try:
-        today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
-        rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
-        rb.save()
-        user = User.objects.get(email=room_details[2])
-        conn = pymysql.connect(host= "localhost",user="root",passwd="superstar007",db="hotelflexproject")
-        cur = conn.cursor()
-        cur.execute("""INSERT INTO reservation VALUES (%s,%s,%s,%s,%s)""",(today_date,room_details[0],room_details[1],details[3],user.id))
-        conn.commit()
-    except:
-        conn.rollback()
+    today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
+    rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
+    rb.save()
+    user = User.objects.get(email=room_details[2])
+    arguments = [today_date,room_details[0],room_details[1],details[3],user.id]
+    database_insert('reservation',arguments)
+
 
 def changeDateFormat(date):
     d_list = date.split('/')
     modified_date = d_list[2]+'-'+d_list[0]+'-'+d_list[1]
     return modified_date
+
+def database_insert(table_name,args):
+    try:
+        connection = mysql.connector.connect(host= "localhost",user="root",passwd="superstar007",db="hotelflexproject")
+        cur = connection.cursor()
+        arguments = []
+        length=len(args)
+        for i in range(length):
+            arguments.append('%s')
+        arg = ''.join(arguments)
+        st = str(arguments)
+        st = st.replace("'","")
+        st = st.replace("[","")
+        st = st.replace("]","")
+        ar = tuple(st)
+        query = "insert into "+table_name+" values "+"("+st+")"
+        cur.execute(query,args)
+        connection.commit()
+    except:
+        connection.rollback()
+    finally:
+        if(connection.is_connected()):
+            connection.close()
