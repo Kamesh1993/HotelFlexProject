@@ -1,7 +1,3 @@
-"""
-Definition of urls for HotelFlexProject.
-"""
-
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
