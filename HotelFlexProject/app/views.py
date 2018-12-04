@@ -97,7 +97,7 @@ def booking(request):
 
 def roombooking(request):
     try:
-        global room_details
+        global room_details, today_date
         room_details = []
         if 'email' in request.session:
             if request.method=='POST':
@@ -166,7 +166,6 @@ def reservation(room,details):
     user = User.objects.get(email=room_details[2])
     arguments = [today_date,room_details[0],room_details[1],details[3],user.id]
     database_insert('reservation',arguments)
-
 
 def changeDateFormat(date):
     d_list = date.split('/')
