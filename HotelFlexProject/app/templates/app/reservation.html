@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
@@ -59,6 +59,66 @@
             });
     });
 </script>
+    <style>
+        .invoice{
+  width:970px !important;
+  margin:50px auto;
+  .invoice-header{
+    padding:25px 25px 15px;
+    h1{
+      margin:0
+    }
+    .media{
+      .media-body{
+        font-size:.9em;
+        margin:0;
+      }
+    }
+  }
+  .invoice-body{
+    border-radius:10px;
+    padding:25px;
+    background:#FFF;
+  }
+  .invoice-footer{
+    padding:15px;
+    font-size:0.9em;
+    text-align:center;
+    color:#999;
+  }
+}
+.logo{
+  max-height:70px;
+  border-radius:10px;
+}
+.dl-horizontal{
+  margin:0;
+  dt{
+        float: left;
+    width: 80px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  dd{
+    margin-left:90px;
+  }
+}
+.rowamount{
+  padding-top:15px !important;
+}
+.rowtotal{
+  font-size:1.3em;
+}
+.colfix{
+  width:12%;
+}
+.mono{
+  font-family:monospace;
+}
+    </style>
 </head>
 
 <body onload="noBack();">
@@ -105,107 +165,181 @@
                             <!-- Step 4 -->
                         </div>
                         <fieldset>
-                        <!--================ ROOMS ==============-->
-           <section class="rh rh-100 rh-ournews">
+                            <section class="rh rh-100 rh-ournews">
             <div class="container">
                 <div class="row">
                     <!-- ournews & Events Title -->
                     <div class="col-lg-12 col-md-12">
                         <div class="rh-section-title">
                             <h2><b>Thank you for choosing us</b></h2>
-                            <p>Summary of your order</p>
+                            <p> <h2>Invoice</h2>
+                            <h4>{{billno}}</h4></p>
                         </div>
                     </div>
                 </div>
-                <div class="row rh-flex">
-                    <!-- ournews & Events Box -->
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box rh-mar-30">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-1.jpg" alt="ournews-1" />
-                                <a href="/single"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="/single">Single Room</a></h4>
-                                <span class="rh"><b>Capacity</b>: 2 people</span>
-                                <a href="/single" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box rh-mar-30">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-2.jpg" alt="ournews-2" />
-                                <a href="/double"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="event-single-page.html">Double Room</a></h4>
-                                <span class="rh"><b>Capacity</b>: 4 people</span>
-                                <a href="/double" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box rh-mar-30">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-3.jpg" alt="ournews-3" />
-                                <a href="/deluxe"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="event-single-page.html">Deluxe Room</a></h4>
-                                <span class="rh"><b>Capacity</b>: 5 people</span>
-                                <a href="/deluxe" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box rh-mar-30">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-4.jpg" alt="ournews-4" />
-                                <a href="/luxury"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="/luxury">Luxury Room</a></h4>
-                                <span class="rh"><b>Capacity</b>: 5 people</span>
-                                <a href="/luxury" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box rh-sm-30">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-5.jpg" alt="ournews-5" />
-                                <a href="/executive"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="/executive">Executive Suite</a></h4>
-                                <span class="rh"><b>Capacity</b>: 5 people</span>
-                                <a href="/executive" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rh-on-12">
-                        <div class="rh rh-ournews-box">
-                            <div class="ournews-img">
-                                <img src="../../static/app/images/ournews/ournews-6.jpg" alt="ournews-6" />
-                                <a href="/prodeluxe"></a>
-                            </div>
-                            <div class="ournews-detail">
-                                <h4><a href="/prodeluxe">Pro Deluxe</a></h4>
-                                <span class="rh"><b>Capacity</b>: 5 people</span>
-                                <a href="/prodeluxe" name="booknow" class="rh-check-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
+  <div class="invoice-body">
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Company Details</h3>
+          </div>
+          <div class="panel-body">
+            <dl class="dl-horizontal">
+              <dt>Name</dt>
+              <dd><strong>Acme Corporation</strong></dd>
+              <dt>Industry</dt>
+              <dd>Software Development</dd>
+              <dt>Address</dt>
+              <dd>Field 3, Moon</dd>
+              <dt>Phone</dt>
+              <dd>123.4456.4567</dd>
+              <dt>Email</dt>
+              <dd>mainl@acme.com</dd>
+              <dt>Tax NO</dt>
+              <dd class="mono">123456789</dd>
+              <dt>Tax Office</dt>
+              <dd>A' Moon</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-7">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Customer Details</h3>
+          </div>
+          <div class="panel-body">
+            <dl class="dl-horizontal">
+              <dt>Name</dt>
+              <dd>Microsoft Corporation</dd>
+              <dt>Industry</dt>
+              <dd>Software Development</dd>
+              <dt>Address</dt>
+              <dd>One Microsoft Way Redmond, WA 98052-7329, USA</dd>
+              <dt>Phone</dt>
+              <dd>(425) 882-8080</dd>
+              <dt>Email</dt>
+              <dd>contact@microsoft.com</dd>
+              <dt>Tax NO</dt>
+              <dd class="mono">123456789</dd>
+              <dt>&nbsp;</dt>
+              <dd>&nbsp;</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Travel Itinerary</h3>
+      </div>
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>Details</th>
+            <th class="text-center colfix">Check In</th>
+            <th class="text-center colfix">Check Out</th>
+            <th class="text-center colfix">Number of rooms</th>
+            <th class="text-center colfix">Tax</th>
+            <th class="text-center colfix">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Lorem Ipsum Dolor
+              <br>
+              <small class="text-muted">The best lorem in town, try it now or leave forever</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">$1,000.00</span>
+              <br>
+              <small class="text-muted">Before Tax</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">$18,000.00</span>
+              <br>
+              <small class="text-muted">18 Units</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">- $1,800.00</span>
+              <br>
+              <small class="text-muted">Special -10%</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">+ $3,240.00</span>
+              <br>
+              <small class="text-muted">VAT 20%</small>
+            </td>
+            <td class="text-right">
+              <strong class="mono">$19,440.00</strong>
+              <br>
+              <small class="text-muted mono">$16,200.00</small>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Sit Amet Dolo
+              <br>
+              <small class="text-muted">Now you may sit</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">$120.00</span>
+              <br>
+              <small class="text-muted">Before Tax</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">$240.00</span>
+              <br>
+              <small class="text-muted">2 Units</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">- $0.00</span>
+              <br>
+              <small class="text-muted">-</small>
+            </td>
+            <td class="text-right">
+              <span class="mono">+ $72.00</span>
+              <br>
+              <small class="text-muted">VAT:20% S:10%</small>
+            </td>
+            <td class="text-right">
+              <strong class="mono">$312.00</strong>
+              <br>
+              <small class="text-muted mono">$240.00</small>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">General Terms and Conditions</h3>
+            </div>
+          <div class="panel-body">
+              <ul class="a">
+                  <li><b>1.</b> The primary guest must be at least 18 years of age to be able to check into the hotel.</li>
+                <li><b>2.</b> It is mandatory for guests to present valid photo identification at the time of check-in. According to government regulations, a valid Photo ID has to be carried by every person above the age of 18 staying at the hotel. The identification proofs accepted are Aadhar Card,
+                  Driving License, Voter ID Card, and Passport.
+                  Without Original copy of valid ID the guest will not be allowed to check-in.</li>
+                <li><b>3.</b> PAN card is not accepted as a valid ID card.</li>
+                <li><b>4.</b> Stay of 1 child up to 5 years of age is complementary without the use of extra mattress.
+                  Breakfast charges may be applicable for the child.</li>
+              </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                </section>
+
+  </div>
+
+</div>
                 </div>
             </div>
-           </section>
-                        <!-- end rooms -->
-
-                            <div class="form-wizard-buttons">
-                                <button type="button" class="btn btn-previous">Previous</button>
-                                <button type="button" class="btn btn-next">Next</button>
-                            </div>
                         </fieldset>
                             
                 </div>
@@ -233,8 +367,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
         <!-- About Royal Hotel Close -->
