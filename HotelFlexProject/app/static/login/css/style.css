@@ -396,8 +396,8 @@ form .field-group .wthree-field {
     }
 
 .wthree-field input[type="submit"]:hover {
-    background: #000;
-    color: #da0845;
+    background: green;
+    color: #fff;
     letter-spacing: 2px;
 }
 
