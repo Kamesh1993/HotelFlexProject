@@ -1,21 +1,12 @@
 from django.shortcuts import render
-from django.conf import settings
 from django.http import HttpRequest, HttpResponseRedirect
-from django.contrib.messages import warning
-from django.template import RequestContext
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login as auth_login
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib import messages,auth
+from django.contrib import messages
 from app.forms import RegisterForm, LoginForm, RoomBooking, Reservation
 from datetime import datetime
 from app.models import UserDetails, RoomBooking
 import mysql.connector
-from mysql.connector import Error
-from mysql.connector import errorcode
 from passlib.hash import sha256_crypt
-import pymysql
 
 def home(request):
     """Renders the home page."""
@@ -52,6 +43,7 @@ def register(request):
             form = RegisterForm()
         return render(request,'app/register.html',{'form':form})
     except:
+        messages.warning(request, 'Email already exists, Please try again!')
         return render(request,'app/index.html')
 
 def login(request):
@@ -82,11 +74,14 @@ def login(request):
         return render(request,'app/index.html')
 
 def logout(request):
-    users = User.objects.get(email=request.session['email'])
-    users.is_active=False
-    users.save()
-    del(request.session['email'])
-    return HttpResponseRedirect('/')
+    try:
+        users = User.objects.get(email=request.session['email'])
+        users.is_active=False
+        users.save()
+        del(request.session['email'])
+        return HttpResponseRedirect('/')
+    except:
+        return HttpResponseRedirect('/booking')
 
 def booking(request):
     """Renders the booking page only after the user logs in"""
@@ -116,56 +111,42 @@ def roombooking(request):
     except:
         return render(request,'app/index.html')
 
-def single(request):
-    #try:
-    if 'email' in request.session:
-        if request.method=='POST':
-            form = Reservation(request.POST)
-            firstname = form['firstname'].value()
-            middlename = form['middlename'].value()
-            lastname = form['lastname'].value()
-            email = form['email'].value()
-            phone = form['phone'].value()
-            address = form['address'].value()
-            city = form['city'].value()
-            state = form['state'].value()
-            zipcode = form['zipcode'].value()
-            idproof = form['idproof'].value()
-            rooms = form['rooms'].value() 
-            details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-            reservation('single',details)
-            return render(request,'app/reservation.html')
-        return render(request,'app/singlerooms.html')
-    else:
-        return render(request,'app/login.html')
-    #except:
-    return render(request,'app/booking.html')
-
-def double(request):
+def reserve(request,roomtype):
     try:
+        request.session['roomtype'] = roomtype
         if 'email' in request.session:
-            return render(request,'app/doublerooms.html')
-        else:
-            return render(request,'app/login.html')
-    except:
-        return render(request,'app/booking.html')
-
-def luxury(request):
-    try:
-        if 'email' in request.session:
-            return render(request,'app/singlerooms.html')
+            if request.method=='POST':
+                form = Reservation(request.POST)
+                firstname = form['firstname'].value()
+                middlename = form['middlename'].value()
+                lastname = form['lastname'].value()
+                email = form['email'].value()
+                phone = form['phone'].value()
+                address = form['address'].value()
+                city = form['city'].value()
+                state = form['state'].value()
+                zipcode = form['zipcode'].value()
+                idproof = form['idproof'].value()
+                rooms = form['rooms'].value()
+                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
+                reservation(roomtype,details)
+                return render(request,'app/reservation.html')
+            return render(request,'app/roomsbooking.html',{'room' : roomtype.title()})
         else:
             return render(request,'app/login.html')
     except:
         return render(request,'app/booking.html')
 
 def reservation(room,details):
-    today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
-    rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
-    rb.save()
-    user = User.objects.get(email=room_details[2])
-    arguments = [today_date,room_details[0],room_details[1],details[3],user.id]
-    database_insert('reservation',arguments)
+    try:
+        today_date = int(datetime.now().strftime("%Y%m%d%H%M%S"))
+        rb = RoomBooking(today_date,room_details[0],room_details[1],details[0],details[1],details[2],details[3],details[4],details[5],details[6],details[7],details[8],details[9],details[10])
+        rb.save()
+        user = User.objects.get(email=room_details[2])
+        arguments = [today_date,room_details[0],room_details[1],details[3],user.id]
+        database_insert('reservation',arguments)
+    except:
+        return HttpResponseRedirect('/booking')
 
 def changeDateFormat(date):
     d_list = date.split('/')
