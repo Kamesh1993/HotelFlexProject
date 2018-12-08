@@ -37,9 +37,8 @@ h6,
 .rh-contact-add p a {
     color: #0E2646;
 }
-		a,
-		a:hover,
-		a:focus,
+
+        a:hover,
 		select,
 		.rh-header .dropdown-menu>li>a:hover span,
 		.rh-header .dropdown-menu>li>a span,
@@ -98,7 +97,8 @@ h6,
             .rh-newsletter .rh-news-sign h5,
             .rh-newsletter .news-social li a:hover i,
             .footer-about li a,
-            
+
+		a:focus,
             .footer-menu li a:hover,
             .footer-btm span a,
             .stay-box:hover .overley .stay-detail h5,
@@ -124,10 +124,12 @@ h6,
 		.footer-menu li a {
 		    color: #F7F1EB;
 		}
+		a,
 .rh-newsletter {
     color: #0E2646;
 }
-.rh-footer-box h5{
+.rh-footer-box h5,
+.rh-check-btn,a{
     color:#ffffff;
 }
 .rh-news-email .news-email-form a:hover i,
@@ -242,7 +244,7 @@ body,
 		.select-list .bootstrap-select.btn-group .dropdown-menu>li>a:hover,
 		.select-list .bootstrap-select.btn-group .dropdown-menu>li>a:focus,
 		.rh-banner-widgets .book-now:hover,
-		.rh-check-btn,
+
 		a.rh-check-btn,
 		.rh-news-email .news-email-form a,
 		.sort-view-list .sort-by .buttons button.current,
