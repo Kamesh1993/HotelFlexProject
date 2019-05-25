@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Hotel Management System</title>
+    <title>Ruby</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Royal Luxury Stay - Online Booking Smart Responsive HTML5 Template">
     <meta name="keywords" content="accommodation,apartment,B&B,bed and breakfast,booking,hostel,inn,motel,reservation,reservation form,resort,responsive,spa,travel,bootstrap,cruise,flights,holiday,hotel,html5 template,online booking,real estate,rentals,tour,tourism,uber">
@@ -60,65 +60,32 @@
     });
 </script>
     <style>
-        .invoice{
-  width:970px !important;
-  margin:50px auto;
-  .invoice-header{
-    padding:25px 25px 15px;
-    h1{
-      margin:0
-    }
-    .media{
-      .media-body{
-        font-size:.9em;
-        margin:0;
-      }
-    }
-  }
-  .invoice-body{
-    border-radius:10px;
-    padding:25px;
-    background:#FFF;
-  }
-  .invoice-footer{
-    padding:15px;
-    font-size:0.9em;
-    text-align:center;
-    color:#999;
-  }
+.height {
+    min-height: 200px;
 }
-.logo{
-  max-height:70px;
-  border-radius:10px;
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
 }
-.dl-horizontal{
-  margin:0;
-  dt{
-        float: left;
-    width: 80px;
-    overflow: hidden;
-    clear: left;
-    text-align: right;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  dd{
-    margin-left:90px;
-  }
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
 }
-.rowamount{
-  padding-top:15px !important;
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
 }
-.rowtotal{
-  font-size:1.3em;
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
 }
-.colfix{
-  width:12%;
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
 }
-.mono{
-  font-family:monospace;
-}
-    </style>
+</style>
 </head>
 
 <body onload="noBack();">
@@ -165,183 +132,87 @@
                             <!-- Step 4 -->
                         </div>
                         <fieldset>
-                            <section class="rh rh-100 rh-ournews">
+                        <!--================ ROOMS ==============-->
+           <section class="rh rh-100 rh-ournews">
             <div class="container">
-                <div class="row">
-                    <!-- ournews & Events Title -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="rh-section-title">
-                            <h2><b>Thank you for choosing us</b></h2>
-                            <p> <h2>Invoice</h2>
-                            <h4>{{billno}}</h4></p>
-                        </div>
+                <div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <h2>Thank you for choosing us</h2>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center"><strong>Order summary</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><h4>Booking Id</h4></td>
+                                    <td><h4>Customer Name</h4></td>
+                                    <td><h4>Number of Rooms</h4></td>
+                                    <td><h4>Check In</h4></td>
+                                    <td><h4>Check Out</h4></td>
+                                    <td><h4>Total</h4></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>{{bid}}</strong></td>
+                                    <td><strong>{{name}}</strong></td>
+                                    <td><strong>{{room}}</strong></td>
+                                    <td><strong>{{cin}}</strong></td>
+                                    <td><strong>{{cout}}</strong></td>
+                                    <td><strong>{{price}}</strong></td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                        <center><h3><b>Terms and Conditions</b></h3></center>
+                        <ul><li>The hotel may refuse to conclude an accommodation agreement if any of the following cases:</li>
+
+                        <li><b>1.</b> The request for accommodation is not based on the terms of agreement.</li>
+
+                        <li><b>2.</b> The hotel is fully occupied and so cannot comply with the request for accommodation.</li>
+
+                        <li><b>3.</b> The person requiring accommodation is clearly recognized to be infected with an infectious disease.</li>
+
+                        <li><b>4.</b> The hotel has sufficient reason to suspect that the person requesting accommodation may use accommodation for gambling or other illegal purpose, or otherwise to violate public morals.</li>
+
+                        <li><b>5.</b> The person requesting accommodation is extremely intoxicated or is otherwise to likely to disturb other guests.</li>
+
+                        <li><b>6.</b> The person requesting accommodation is clearly recognized to be unable to pay for the accommodation.</li>
+
+                        <li><b>7.</b> The person requesting accommodation is behaving suspiciously.</li>
+
+                        <li><b>8.</b> The person requesting accommodation belongs to an antisocial force, such as an organized crime group or an organization affiliated with an organized crime group.</li>
+
+                        <li><b>9.</b> The person requesting accommodation belongs to a corporation managed or supported by an organized crime group or its member(s).</li>
+
+                        <li><b>10.</b> The person requesting accommodation belongs to a corporation of which directors is a member of an organized crime group.</li>
+
+                        <li><b>11.</b> The person requesting accommodation has caused significant disturbance, in speech or conduct, to other guests.</li>
+
+                        <li><b>12.</b> The person requesting accommodation has used violence to make a demand on the hotel or its employee(s), or has otherwise made a demand beyond the scope of reasonably acceptable burden on the hotel or its employee(s).</li>
+
+                        <li><b>13.</b> The hotel is unable to accommodate the person requesting accommodation due to disaster, failure of facilities or other unavoidable reason.</li></ul>
                     </div>
                 </div>
-  <div class="invoice-body">
-    <div class="row">
-      <div class="col-xs-5">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Company Details</h3>
-          </div>
-          <div class="panel-body">
-            <dl class="dl-horizontal">
-              <dt>Name</dt>
-              <dd><strong>Acme Corporation</strong></dd>
-              <dt>Industry</dt>
-              <dd>Software Development</dd>
-              <dt>Address</dt>
-              <dd>Field 3, Moon</dd>
-              <dt>Phone</dt>
-              <dd>123.4456.4567</dd>
-              <dt>Email</dt>
-              <dd>mainl@acme.com</dd>
-              <dt>Tax NO</dt>
-              <dd class="mono">123456789</dd>
-              <dt>Tax Office</dt>
-              <dd>A' Moon</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-7">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Customer Details</h3>
-          </div>
-          <div class="panel-body">
-            <dl class="dl-horizontal">
-              <dt>Name</dt>
-              <dd>Microsoft Corporation</dd>
-              <dt>Industry</dt>
-              <dd>Software Development</dd>
-              <dt>Address</dt>
-              <dd>One Microsoft Way Redmond, WA 98052-7329, USA</dd>
-              <dt>Phone</dt>
-              <dd>(425) 882-8080</dd>
-              <dt>Email</dt>
-              <dd>contact@microsoft.com</dd>
-              <dt>Tax NO</dt>
-              <dd class="mono">123456789</dd>
-              <dt>&nbsp;</dt>
-              <dd>&nbsp;</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Travel Itinerary</h3>
-      </div>
-      <table class="table table-bordered table-condensed">
-        <thead>
-          <tr>
-            <th>Details</th>
-            <th class="text-center colfix">Check In</th>
-            <th class="text-center colfix">Check Out</th>
-            <th class="text-center colfix">Number of rooms</th>
-            <th class="text-center colfix">Tax</th>
-            <th class="text-center colfix">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Lorem Ipsum Dolor
-              <br>
-              <small class="text-muted">The best lorem in town, try it now or leave forever</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">$1,000.00</span>
-              <br>
-              <small class="text-muted">Before Tax</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">$18,000.00</span>
-              <br>
-              <small class="text-muted">18 Units</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">- $1,800.00</span>
-              <br>
-              <small class="text-muted">Special -10%</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">+ $3,240.00</span>
-              <br>
-              <small class="text-muted">VAT 20%</small>
-            </td>
-            <td class="text-right">
-              <strong class="mono">$19,440.00</strong>
-              <br>
-              <small class="text-muted mono">$16,200.00</small>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              Sit Amet Dolo
-              <br>
-              <small class="text-muted">Now you may sit</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">$120.00</span>
-              <br>
-              <small class="text-muted">Before Tax</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">$240.00</span>
-              <br>
-              <small class="text-muted">2 Units</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">- $0.00</span>
-              <br>
-              <small class="text-muted">-</small>
-            </td>
-            <td class="text-right">
-              <span class="mono">+ $72.00</span>
-              <br>
-              <small class="text-muted">VAT:20% S:10%</small>
-            </td>
-            <td class="text-right">
-              <strong class="mono">$312.00</strong>
-              <br>
-              <small class="text-muted mono">$240.00</small>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">General Terms and Conditions</h3>
             </div>
-          <div class="panel-body">
-              <ul class="a">
-                  <li><b>1.</b> The primary guest must be at least 18 years of age to be able to check into the hotel.</li>
-                <li><b>2.</b> It is mandatory for guests to present valid photo identification at the time of check-in. According to government regulations, a valid Photo ID has to be carried by every person above the age of 18 staying at the hotel. The identification proofs accepted are Aadhar Card,
-                  Driving License, Voter ID Card, and Passport.
-                  Without Original copy of valid ID the guest will not be allowed to check-in.</li>
-                <li><b>3.</b> PAN card is not accepted as a valid ID card.</li>
-                <li><b>4.</b> Stay of 1 child up to 5 years of age is complementary without the use of extra mattress.
-                  Breakfast charges may be applicable for the child.</li>
-              </ul>
-          </div>
-          </div>
         </div>
-      </div>
     </div>
-                </section>
-
-  </div>
-
+</div>     
 </div>
-                </div>
-            </div>
+           </section>
+                        <!-- end rooms -->                            
                         </fieldset>
-                            
                 </div>
             </div>
         </div>
@@ -367,6 +238,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
             </div>
         </div>
         <!-- About Royal Hotel Close -->
@@ -383,5 +256,4 @@
     <!-- Backe To Top Close -->
     {% endblock %}
 </body>
-
 </html>
