@@ -16,6 +16,7 @@ from mysql.connector import Error
 from mysql.connector import errorcode
 from passlib.hash import sha256_crypt
 import pymysql
+import smtplib
 
 def home(request):
     """Renders the home page."""
@@ -83,9 +84,10 @@ def login(request):
                     return render(request,'app/login.html')
         else:
             form = LoginForm()
-        return render(request,'app/login.html')
+            return render(request,'app/login.html')
     except:
-        return render(request,'app/index.html')
+        messages.warning(request,'Invalid email/password, Please try again!')
+        return render(request,'app/login.html')
 
 def logout(request):
     try:
@@ -133,23 +135,12 @@ def single(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('single')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('single',details)
-                name = firstname+" "+middlename+" "+lastname
+                getform(request,form)
                 return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
-            return render(request,'app/singlerooms.html')
+            else:
+                return render(request,'app/singlerooms.html')
         else:
             return render(request,'app/login.html')
     except:
@@ -159,22 +150,9 @@ def double(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('double')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('single',details)
-                name = firstname+" "+middlename+" "+lastname
-                return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
+                getform(request,form)
             else:
                 return render(request,'app/doublerooms.html')
         else:
@@ -186,22 +164,9 @@ def deluxe(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('deluxe')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('deluxe',details)
-                name = firstname+" "+middlename+" "+lastname
-                return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
+                getform(request,form)
         else:
             return render(request,'app/login.html')
     except:
@@ -211,22 +176,9 @@ def luxury(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('luxury')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('single',details)
-                name = firstname+" "+middlename+" "+lastname
-                return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
+                getform(request,form)
         else:
             return render(request,'app/login.html')
     except:
@@ -236,22 +188,9 @@ def executive(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('executive')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('single',details)
-                name = firstname+" "+middlename+" "+lastname
-                return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
+                getform(request,form)
         else:
             return render(request,'app/login.html')
     except:
@@ -261,22 +200,9 @@ def presidential(request):
     try:
         if 'email' in request.session:
             if request.method=='POST':
+                available=get_available('presidential')
                 form = Reservation(request.POST)
-                firstname = form['firstname'].value()
-                middlename = form['middlename'].value()
-                lastname = form['lastname'].value()
-                email = form['email'].value()
-                phone = form['phone'].value()
-                address = form['address'].value()
-                city = form['city'].value()
-                state = form['state'].value()
-                zipcode = form['zipcode'].value()
-                idproof = form['idproof'].value()
-                rooms = form['rooms'].value() 
-                details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
-                reservation('single',details)
-                name = firstname+" "+middlename+" "+lastname
-                return render(request,'app/reservation.html',{'name':name,'room':rooms,'cin':cin,'cout':cout,'bid':today_date})
+                getform(request,form)
             else:
                 return render(request,'app/presidential.html')
         else:
@@ -339,8 +265,9 @@ def forgotpassword(request):
     try:
         if request.method=='POST':
             fromaddr = 'ruby.coders@gmail.com'
-            toaddrs  = request.form['email']
-            msg = 'Your password is - P@$Sw0rd, please reset it.'
+            toaddrs  = request.POST.get('email')
+            data = UserDetails.objects.filter(email=toaddrs).values()
+            msg = 'Hello, your password is: '+data.password
             username = 'ruby.coders@gmail.com'
             password = '$uperSt@r007'
             server = smtplib.SMTP('smtp.gmail.com:587')
@@ -349,11 +276,35 @@ def forgotpassword(request):
             server.login(username,password)
             server.sendmail(fromaddr, toaddrs, msg)
             server.quit()
-            data = Register_db.query.filter_by(email=toaddrs).first()
-            data.password = sha256_crypt.encrypt("P@$Sw0rd")
-            db.session.commit()
             return redirect(url_for('login'))
         else:
-            return render_template('ForgotPassword.html')
+            return render(request,'app/forgotpassword.html')
     except:
-        return render_template('ForgotPassword.html')
+        messages.warning(request,'Invalid email please enter valid email')
+        return render(request,'app/forgotpassword.html')
+
+def get_available(roomtype):
+    try:
+        connection = mysql.connector.connect(host= "localhost",user="root",passwd="superstar007",db="hotelflexproject")
+        cur = connection.cursor()
+        query = "select available from rooms where roomtype="+roomtype
+        return query
+    except:
+        return HttpResponseRedirect('/booking')
+
+def getform(request,form):
+    global name, rooms, bid, days
+    firstname = form['firstname'].value()
+    middlename = form['middlename'].value()
+    lastname = form['lastname'].value()
+    email = form['email'].value()
+    phone = form['phone'].value()
+    address = form['address'].value()
+    city = form['city'].value()
+    state = form['state'].value()
+    zipcode = form['zipcode'].value()
+    idproof = form['idproof'].value()
+    rooms = form['rooms'].value() 
+    details = [firstname,middlename,lastname,email,phone,address,city,state,zipcode,idproof,rooms]
+    reservation('single',details)
+    name = firstname+" "+middlename+" "+lastname
