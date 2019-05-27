@@ -3,16 +3,16 @@ Definition of urls for HotelFlexProject.
 """
 
 from datetime import datetime
-from django.conf.urls import url
+from django.conf.urls import url, include
 import django.contrib.auth.views
 
 import app.forms
 import app.views
 
-# Uncomment the next lines to enable the admin:
-# from django.conf.urls import include
-# from django.contrib import admin
-# admin.autodiscover()
+#Uncomment the next lines to enable the admin:
+#from django.conf.urls import include
+#from django.contrib import admin
+#admin.autodiscover()
 
 urlpatterns = [
     # Examples:
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^logout$',app.views.logout,name='logout'),
     url(r'^roombooking/$',app.views.roombooking,name='roombooking'),
     url(r'^single/$',app.views.single,name='single'),
+    url(r'^forgotpassword/$',app.views.forgotpassword,name='forgot'),
     url(r'^double/$',app.views.double,name='double'),
     url(r'^luxury/$',app.views.luxury,name='luxury'),
     url(r'^deluxe/$',app.views.deluxe,name='deluxe'),
@@ -34,8 +35,8 @@ urlpatterns = [
     url(r'^bookinghistory/$',app.views.bookinghistory,name='history'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include(admin.site.urls)),
 ]
