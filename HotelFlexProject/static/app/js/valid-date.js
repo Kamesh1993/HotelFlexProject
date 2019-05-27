@@ -1,5 +1,14 @@
 // DatePicker
 $(function () {
+    var $dp1 = $("#datepicker_CIn");
+        $dp1.datepicker({
+            minDate: 0
+        });
+
+    var $dp2 = $("#datepicker_COut");
+        $dp2.datepicker({
+            minDate: 0
+        });
     $("#datepicker_CIn").datepicker();
     $("#datepicker_COut").datepicker();
     //Pass the user selected date format
@@ -15,7 +24,7 @@ function handler(e) {
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
     selected = e.target.value;
-    if (selected < today) {
+    if (selected > today) {
         alert("please selected above today date");
         $('#datepicker_CIn').val('');
         $('#datepicker_COut').val('');
@@ -25,7 +34,7 @@ function date(f) {
     var cin = document.getElementById("datepicker_CIn").value;
     var cout = document.getElementById("datepicker_COut").value;
     if (cout < cin) {
-        alert("faild");
+        alert("Check out date cannot be todays date");
         $('#datepicker_COut').val('');
     }
 }
